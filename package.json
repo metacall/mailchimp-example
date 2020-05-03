@@ -1,5 +1,5 @@
 {
-  "name": "mailchimp-metacall-example",
+  "name": "mailchimp-example",
   "version": "1.0.0",
   "description": "A Mailchimp list subscriber endpoint written in node and how to deploy yours in MetaCall.",
   "main": "mailchimp.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/josead/mailchimp-metacall-example.git"
+    "url": "git+https://github.com/metacall/mailchimp-example.git"
   },
   "keywords": [
     "metacall",
@@ -27,7 +27,7 @@
   "author": "Jose Antonio Dominguez",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/josead/mailchimp-metacall-example/issues"
+    "url": "https://github.com/metacall/mailchimp-example/issues"
   },
-  "homepage": "https://github.com/josead/mailchimp-metacall-example#readme"
+  "homepage": "https://github.com/metacall/mailchimp-example#readme"
 }
