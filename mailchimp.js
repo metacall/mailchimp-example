@@ -8,7 +8,7 @@ const MAILCHIMP_API_KEY = process.env.MAILCHIMP_API_KEY;
 const MAILCHIMP_TARGET_LIST = process.env.MAILCHIMP_TARGET_LIST;
 // Mailchimp endpoint using v3.0
 const dc = MAILCHIMP_API_KEY.split("-")[1];
-const apiUrl = "https://".concat(dc, ".api.mailchimp.com/3.0");
+const apiUrl = `https://${dc}.api.mailchimp.com/3.0`;
 // Authorization
 const auth = {
   username: MAILCHIMP_API_USERNAME,
@@ -35,9 +35,9 @@ async function subscribe(email, status = "pending") {
     }),
     headers: {
       "Content-Type": "application/json",
-      Authorization:
-        "Basic " +
-        Buffer.from(auth.username + ":" + auth.password).toString("base64"),
+      Authorization: `Basic ${Buffer.from(
+        `${auth.username}:${auth.password}`
+      ).toString("base64")}`,
     },
   });
   const resp = await req.json();
