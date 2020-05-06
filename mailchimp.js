@@ -1,6 +1,9 @@
 "use strict";
 
 const fetch = require("node-fetch");
+const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
 
 // Mailchimp env variables
 const MAILCHIMP_API_USERNAME = process.env.MAILCHIMP_API_USERNAME;
@@ -43,6 +46,28 @@ async function subscribe(email, status = "pending") {
   const resp = await req.json();
   return resp;
 }
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post("/webhook", (req, res) => {
+  // For a better security in this webhook, mailchimp recommends to use a secret sent in the url
+  if (
+    req.body &&
+    req.body.type === "subscribe" &&
+    req.body.data &&
+    req.body.data.list_id === MAILCHIMP_TARGET_LIST
+  ) {
+    const email = req.body.data.email;
+
+    // Do whatever you need in here with your email verified.
+    console.log("New email registered: ", email);
+
+    res.send("ok");
+  }
+});
+
+app.listen(8080, () => console.log(`Express Listening ...`));
 
 module.exports = {
   subscribe,
